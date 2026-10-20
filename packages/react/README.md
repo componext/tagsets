@@ -3,12 +3,13 @@
 Tagsets glyphs as React components: licenses (SPDX), locales (ISO 639-1 / BCP 47), part-of-speech tags (UD UPOS), tech abbreviations, keyboard keys and math symbols, on Lucide's 24px stroke grid.
 
 ```tsx
-import { LicenseApache, KeyMeta, KeyK } from 'tagsets-react';
+import { PosNoun, LicenseMit, KeyMeta, KeyK } from 'tagsets-react';
 import { TagGlyph, getGlyph } from 'tagsets-react/dynamic';
 import PosNoun from 'tagsets-react/glyphs/pos-noun';
 
-<LicenseApache size={20} title="Apache License 2.0" />   // fixed: AP2 in the square
-<LicenseApache size={20} fit="hug" />                   // hug: APACHE2, as wide as it needs
+<PosNoun size={20} title="Noun" />                       // fixed: N in the square
+<PosNoun size={20} fit="hug" />                          // hug: NOUN, as wide as it needs
+<LicenseMit />                                           // hug only: no two-character form of MIT
 <KeyMeta /><KeyK />                                      // ⌘ K
 <TagGlyph tagset="licenses" code="GPL-3.0-or-later" fallback="GPL" />
 ```

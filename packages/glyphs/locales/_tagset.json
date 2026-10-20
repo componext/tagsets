@@ -2,11 +2,10 @@
   "id": "locales",
   "prefix": "Locale",
   "label": "Locales",
-  "description": "Languages by ISO 639-1 code, set in a speech bubble. Any BCP 47 tag resolves by its primary language subtag (en-US, zh-Hant-TW); ISO 639-2 codes are aliases.",
+  "description": "Languages by ISO 639-1 code, as two capitals filling the square. Any BCP 47 tag resolves by its primary language subtag (en-US, zh-Hant-TW); ISO 639-2 codes are aliases.",
   "standard": "ISO 639-1 / BCP 47",
   "url": "https://www.rfc-editor.org/info/bcp47",
   "normalize": "bcp47",
-  "frame": "bubble",
   "tile": {
     "from": "#0284C7",
     "to": "#075985",

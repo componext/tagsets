@@ -10,10 +10,10 @@ Every glyph is 24 tall in up to two fits: `fixed` (the 24×24 square, with a sho
 - `manifest.json`: every tagset and glyph, with codes, aliases, labels, widths and file paths.
 
 ```js
-import { LicenseApache, getGlyph, toSvg, createElement, replaceElements } from 'tagsets';
+import { PosNoun, getGlyph, toSvg, createElement, replaceElements } from 'tagsets';
 
-toSvg(LicenseApache);                        // AP2, 24×24
-toSvg(LicenseApache, { fit: 'hug' });        // APACHE2, 50×24
+toSvg(PosNoun);                              // N, 24×24
+toSvg(PosNoun, { fit: 'hug' });              // NOUN, 40×24
 getGlyph('keys', 'ShiftLeft');               // KeyShift
 replaceElements();                           // <i data-tagset="pos" data-code="NOUN" data-fit="hug"></i> → <svg>
 ```

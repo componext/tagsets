@@ -9,7 +9,7 @@ import { TagGlyph } from 'tagsets-vue/dynamic';
 </script>
 
 <template>
-  <LicenseApache :size="20" fit="hug" title="Apache License 2.0" />
+  <LicenseApache :size="20" title="Apache License 2.0" />
   <TagGlyph tagset="keys" :code="event.code" fit="hug">
     <template #fallback>{{ event.key }}</template>
   </TagGlyph>

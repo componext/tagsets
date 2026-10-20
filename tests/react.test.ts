@@ -9,23 +9,24 @@ import LicenseCc from 'tagsets-react/glyphs/license-cc';
 const render = (el: Parameters<typeof renderToStaticMarkup>[0]) => renderToStaticMarkup(el);
 
 test('a glyph renders with Lucide defaults and is decorative without a title', () => {
-  const html = render(createElement(LicenseMit));
-  assert.match(html, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tagsets tagsets-license-mit" aria-hidden="true">/);
-  assert.equal(html.match(/<path /g)?.length, 3);
+  const html = render(createElement(LocaleEn));
+  assert.match(html, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tagsets tagsets-locale-en" aria-hidden="true">/);
+  assert.equal(html.match(/<path /g)?.length, 2);
   assert.equal(LicenseMit.displayName, 'LicenseMit');
   assert.deepEqual(LicenseMit.meta, { id: 'license-mit', name: 'mit', tagset: 'licenses', code: 'MIT', label: 'MIT License', component: 'LicenseMit' });
 });
 
 test('fit picks the square or the hugging width; size is the height', () => {
-  assert.match(render(createElement(LicenseApache)), /width="24" height="24" viewBox="0 0 24 24"/);
-  const hug = render(createElement(LicenseApache, { fit: 'hug', size: 12 }));
-  assert.match(hug, /width="25" height="12" viewBox="0 0 50 24"/);
-  assert.match(hug, /class="tagsets tagsets-license-apache tagsets-hug"/);
-  assert.match(render(createElement(LicenseLgpl)), /width="29" height="24" viewBox="0 0 29 24".*tagsets-hug/, 'no fixed form: falls back to hug');
-  assert.match(render(createElement(LicenseLgpl, { size: '1.5em' })), /width="1.813em" height="1.5em"/);
-  assert.match(render(createElement(KeyShift, { fit: 'hug' })), /width="40".*<rect width="36" height="20"/);
+  assert.match(render(createElement(PosNoun)), /width="24" height="24" viewBox="0 0 24 24"/);
+  const hug = render(createElement(PosNoun, { fit: 'hug', size: 12 }));
+  assert.match(hug, /width="20" height="12" viewBox="0 0 40 24"/);
+  assert.match(hug, /class="tagsets tagsets-pos-noun tagsets-hug"/);
+  assert.match(render(createElement(LicenseLgpl)), /width="40" height="24" viewBox="0 0 40 24".*tagsets-hug/, 'no fixed form: falls back to hug');
+  assert.match(render(createElement(LicenseLgpl, { size: '1.5em' })), /width="2.5em" height="1.5em"/);
+  assert.match(render(createElement(KeyShift, { fit: 'hug' })), /width="58".*<rect width="54" height="20"/);
   assert.equal(LicenseLgpl.fixed, null);
-  assert.equal(LicenseApache.hug.width, 50);
+  assert.equal(LicenseApache.fixed, null);
+  assert.equal(LicenseApache.hug.width, 70);
 });
 
 test('size, color, strokeWidth, className and extra attributes apply', () => {
@@ -61,7 +62,7 @@ test('TagGlyph renders the glyph for a code, titled with its label', () => {
   assert.match(html, /tagsets-locale-pt/);
   assert.match(html, /width="20"/);
   assert.match(html, /<title>Portuguese<\/title>/);
-  assert.match(render(createElement(TagGlyph, { tagset: 'keys', code: 'ShiftLeft', fit: 'hug' })), /width="40".*<title>Shift<\/title>/);
+  assert.match(render(createElement(TagGlyph, { tagset: 'keys', code: 'ShiftLeft', fit: 'hug' })), /width="58".*<title>Shift<\/title>/);
   assert.doesNotMatch(render(createElement(TagGlyph, { tagset: 'locales', code: 'pt', title: '' })), /<title>/);
   assert.equal(render(createElement(TagGlyph, { tagset: 'locales', code: 'xx' })), '');
   assert.equal(render(createElement(TagGlyph, { tagset: 'locales', code: 'xx', fallback: createElement('span', null, 'xx') })), '<span>xx</span>');

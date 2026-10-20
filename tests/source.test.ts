@@ -13,9 +13,9 @@ test('every source glyph passes the grid and metadata rules', () => {
   assert.ok(glyphs.length >= 195);
 });
 
-test('every letter has an even width and composes inside the grid', () => {
+test('every character takes the 6-unit cell and composes inside the grid', () => {
   for (const [c, letter] of Object.entries(LETTERS)) {
-    assert.equal(letter.width % 2, 0, `${c} is ${letter.width} wide`);
+    assert.equal(letter.width, 6, `${c} is ${letter.width} wide`);
     const { elements } = compose(c, 'none', 'fixed');
     assert.deepEqual(lintNodes(toNodes(elements), c), [], `letter ${c}`);
   }
@@ -27,7 +27,7 @@ test('text is always one line: composed letters share one cap line in both fits'
       if (!v || v.from === 'drawn') continue;
       const frameCount = FRAME_SPECS[g.frame].draw(v.width - 4).length;
       const [, y0, , y1] = bboxAll(v.nodes.slice(frameCount));
-      assert.ok(y1 - y0 <= 8.01, `${g.id} ${v === g.fixed ? 'fixed' : 'hug'} spans ${y0}..${y1}`);
+      assert.ok(y1 - y0 <= 10.01, `${g.id} ${v === g.fixed ? 'fixed' : 'hug'} spans ${y0}..${y1}`);
     }
   }
 });
@@ -37,28 +37,34 @@ test('fixed is the 24px square; hug is 24 tall and only as wide as its content',
     if (g.fixed) assert.equal(g.fixed.width, 24, g.id);
     if (g.frame !== 'none') assert.ok(g.hug.width >= 24, `${g.id}: a framed hug is never narrower than the square`);
   }
-  assert.equal(glyph('license-apache').hug.width, 50);
-  assert.equal(glyph('license-mit').hug.width, 20);
-  assert.equal(glyph('pos-x').hug.width, 8, 'unframed hug can be narrower than tall');
-  assert.equal(glyph('key-shift').hug.width, 40);
+  assert.equal(glyph('locale-en').hug.width, 20, 'two characters: 16 units plus padding');
+  assert.equal(glyph('license-apache').hug.width, 70);
+  assert.equal(glyph('license-mit').hug.width, 30);
+  assert.equal(glyph('pos-x').hug.width, 10, 'unframed hug can be narrower than tall');
+  assert.equal(glyph('key-shift').hug.width, 58);
   assert.equal(glyph('key-k').hug.width, 24);
   assert.deepEqual([glyph('math-sum').hug.x, glyph('math-sum').hug.width], [4, 16], 'drawn unframed glyphs crop to their ink');
 });
 
-test('a long code uses its short form when fixed, or is hug-only', () => {
-  const apache = glyph('license-apache');
-  assert.equal(apache.fixed?.from, 'short');
+test('the square holds two characters; longer codes use a short form or are hug-only', () => {
+  assert.equal(glyph('locale-en').fixed?.from, 'text');
   assert.equal(glyph('pos-noun').fixed?.from, 'short');
+  assert.equal(glyph('pos-propn').fixed?.from, 'short');
+  assert.equal(glyph('key-home').fixed?.from, 'short');
   assert.equal(glyph('key-shift').fixed?.from, 'drawn');
   assert.equal(glyph('key-shift').hug.from, 'text');
-  const hugOnly = glyphs.filter((g) => !g.fixed).map((g) => g.id).sort();
-  assert.deepEqual(hugOnly, ['key-f10', 'key-f12', 'key-page-down', 'key-page-up', 'license-agpl', 'license-eupl', 'license-lgpl', 'license-zlib', 'tech-http', 'tech-json']);
+  for (const id of ['license-mit', 'license-apache', 'tech-api', 'pos-adj', 'key-f1', 'key-fn']) assert.equal(glyph(id).fixed, undefined, id);
+  for (const g of glyphs) {
+    if (g.tagset.id === 'locales' || g.tagset.id === 'math') assert.ok(g.fixed, `${g.id} has a fixed form`);
+    if (g.fixed?.from === 'text') assert.ok([...g.meta.text!].length <= (g.frame === 'none' ? 2 : 1), `${g.id} fits the square`);
+  }
 });
 
 test('frames stretch when hugging', () => {
-  assert.equal(compose('CC', 'circle', 'hug').elements[0]!.tag, 'circle', 'a circle stays a circle while it fits');
+  assert.equal(compose('C', 'circle', 'hug').elements[0]!.tag, 'circle', 'a circle stays a circle while it fits');
   assert.match(compose('CC0', 'circle', 'hug').elements[0]!.attrs.d!, /^M12 2h\d+a10 10/, 'and becomes a pill when it does not');
-  assert.equal(compose('EN', 'bubble', 'hug').width, 24);
+  assert.equal(compose('E', 'bubble', 'hug').width, 24);
+  assert.equal(compose('EN', 'none', 'fixed').elements.map((e) => e.attrs.d).join(' '), 'M10 7h-6v10h6M4 12h5 M14 17v-10l6 10v-10', 'a pair spans x 4..20, y 7..17');
   assert.equal(compose('ENGLISH', 'bubble', 'hug').width, textWidth('ENGLISH') + 12);
   assert.equal(compose('BACKSPACE', 'keycap', 'hug').elements[0]!.attrs.width, String(textWidth('BACKSPACE') + 8));
   assert.throws(() => compose('APACHE2', 'none', 'fixed'), /fixed none glyph fits 20/);
