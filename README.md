@@ -1,5 +1,7 @@
 # Tagsets
 
+[![CI](https://github.com/componext/tagsets/actions/workflows/ci.yml/badge.svg)](https://github.com/componext/tagsets/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/tagsets)](https://www.npmjs.com/package/tagsets)
+
 Glyphs for standardized metadata codes, drawn on Lucide's grid: 24 tall, 2px round strokes, 1px padding. 195 glyphs in six tagsets:
 
 | Tagset | Prefix | Standard | Glyphs | Resolves |
@@ -124,7 +126,26 @@ A new tagset is a folder with a `_tagset.json`: `id`, a PascalCase `prefix`, `la
 | `pnpm test` | Source rules, fits, code resolution, vanilla assets, React and Vue rendering |
 | `pnpm check` | Build, typecheck, test |
 | `pnpm preview` | Write `preview/index.html`: every glyph in both fits and as a tile, glyphs in use, the alphabet |
+| `pnpm versions check` / `set X.Y.Z` | Check, or set, the one version the three published packages share |
 
 The build fails on any rule a glyph breaks: wrong root attributes, style on children, geometry outside the grid, a drawn glyph whose frame differs from its tagset's, content outside its frame, a short form that does not fit or is never used, two glyphs claiming one code, a character the alphabet lacks.
 
 Requires Node 22.18+ (scripts run as TypeScript directly) and pnpm.
+
+## Releasing
+
+CI (`.github/workflows/ci.yml`) runs on every push to `main` and every pull request, on Node 22 and 24: versions in lockstep, `pnpm check`, and a dry-run pack of each package.
+
+`tagsets`, `tagsets-react` and `tagsets-vue` release together, at one version, from `.github/workflows/release.yml`. Publishing a GitHub release tagged `vX.Y.Z` builds, checks and publishes all three through [npm trusted publishing](https://docs.npmjs.com/trusted-publishers): npm trusts that workflow, so there is no npm token, no one-time code and no passkey prompt, and each version gets a provenance statement. A release marked as a prerelease publishes under the `next` dist-tag. Re-running a release skips the packages already published.
+
+1. `pnpm versions set 0.2.0`, commit, and merge to `main`.
+2. `gh release create v0.2.0 --generate-notes` (add `--prerelease` for `next`).
+3. Watch the Release workflow; the tag must match the packages' version or it stops before publishing.
+
+**One-time setup**, by an owner of the npm packages, approved with the account's passkey. Register the workflow as each package's trusted publisher (npm 11.21 or later; `npm@latest` needs Node 24.15+):
+
+```bash
+for p in tagsets tagsets-react tagsets-vue; do npx -y npm@11.21.1 trust github "$p" --repo componext/tagsets --file release.yml --env npm --allow-publish; done
+```
+
+Check with `npx -y npm@11.21.1 trust list tagsets`. After the first release through the workflow, set each package's **Settings → Publishing access** on npmjs.com to "Require two-factor authentication and disallow tokens": the workflow keeps working, and nothing else can publish. Optionally, add required reviewers or a `v*` tag rule to the `npm` environment in the repository's settings.
