@@ -1,6 +1,6 @@
 {
   "name": "tagsets",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Tagsets: glyphs for standardized metadata codes (licenses, locales, part-of-speech tags, tech abbreviations, keys, math) on Lucide's 24px stroke grid. Glyph data and a string/DOM API, plus optimized SVGs in fixed and hug widths, sprites, 72px tiles and a manifest.",
   "license": "ISC",
   "homepage": "https://github.com/componext/tagsets#readme",

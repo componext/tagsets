@@ -2,22 +2,23 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createSSRApp, h } from 'vue';
 import { renderToString } from 'vue/server-renderer';
-import { LicenseApache, LicenseLgpl, LicenseMit, LocaleEn, MathTimes, PosNoun, TechJson } from 'tagsets-vue';
+import { LicenseLgpl, LicenseMit, LocaleEn, MathTimes, PosNoun, TechJson } from 'tagsets-vue';
 import { TagGlyph, getGlyph } from 'tagsets-vue/dynamic';
 
 const render = (render: () => ReturnType<typeof h>) => renderToString(createSSRApp({ render }));
 
 test('a glyph renders with Lucide defaults and is decorative without a title', async () => {
-  const html = await render(() => h(LicenseMit));
-  assert.match(html, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tagsets tagsets-license-mit" aria-hidden="true">/);
-  assert.equal(html.match(/<path /g)?.length, 3);
+  const html = await render(() => h(LocaleEn));
+  assert.match(html, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tagsets tagsets-locale-en" aria-hidden="true">/);
+  assert.equal(html.match(/<path /g)?.length, 2);
   assert.equal(LicenseMit.displayName, 'LicenseMit');
 });
 
 test('fit picks the square or the hugging width; size is the height', async () => {
-  assert.match(await render(() => h(LicenseApache)), /width="24" height="24" viewBox="0 0 24 24"/);
-  assert.match(await render(() => h(LicenseApache, { fit: 'hug', size: 12 })), /width="25" height="12" viewBox="0 0 50 24".*tagsets-hug/);
-  assert.match(await render(() => h(LicenseLgpl)), /width="29" height="24"/, 'no fixed form: falls back to hug');
+  assert.match(await render(() => h(PosNoun)), /width="24" height="24" viewBox="0 0 24 24"/);
+  assert.match(await render(() => h(PosNoun, { fit: 'hug', size: 12 })), /width="20" height="12" viewBox="0 0 40 24".*tagsets-hug/);
+  assert.match(await render(() => h(LicenseLgpl)), /width="40" height="24"/, 'no fixed form: falls back to hug');
+  assert.equal(LicenseMit.fixed, null);
   assert.match(await render(() => h(MathTimes, { fit: 'hug' })), /width="14" height="24" viewBox="5 0 14 24"/);
 });
 
