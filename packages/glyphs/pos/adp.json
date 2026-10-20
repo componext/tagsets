@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Adposition",
+  "code": "ADP",
+  "aliases": [
+    "IN"
+  ],
+  "text": "ADP",
+  "keywords": [
+    "preposition",
+    "postposition"
+  ]
+}

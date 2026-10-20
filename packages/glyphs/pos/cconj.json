@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Coordinating conjunction",
+  "code": "CCONJ",
+  "aliases": [
+    "CC"
+  ],
+  "text": "CCONJ",
+  "short": "CC"
+}

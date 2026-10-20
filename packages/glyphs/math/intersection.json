@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Intersection",
+  "code": "\\cap",
+  "aliases": [
+    "∩"
+  ]
+}

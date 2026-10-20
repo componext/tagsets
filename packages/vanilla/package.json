@@ -1,0 +1,45 @@
+{
+  "name": "tagsets",
+  "version": "0.1.0",
+  "description": "Tagsets: glyphs for standardized metadata codes (licenses, locales, part-of-speech tags, tech abbreviations, keys, math) on Lucide's 24px stroke grid. Glyph data and a string/DOM API, plus optimized SVGs in fixed and hug widths, sprites, 72px tiles and a manifest.",
+  "license": "ISC",
+  "homepage": "https://github.com/componext/tagsets#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/componext/tagsets.git",
+    "directory": "packages/vanilla"
+  },
+  "bugs": {
+    "url": "https://github.com/componext/tagsets/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./manifest.json": "./dist/manifest.json",
+    "./sprite.svg": "./dist/sprite.svg",
+    "./svg/*": "./dist/svg/*",
+    "./tiles/*": "./dist/tiles/*",
+    "./sprite-hug.svg": "./dist/sprite-hug.svg"
+  },
+  "files": [
+    "dist",
+    "LICENSE-lucide"
+  ],
+  "keywords": [
+    "icons",
+    "glyphs",
+    "svg",
+    "sprite",
+    "spdx",
+    "bcp47",
+    "universal-dependencies",
+    "lucide",
+    "keyboard",
+    "math",
+    "latex"
+  ]
+}

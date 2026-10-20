@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "JavaScript Object Notation",
+  "code": "JSON",
+  "aliases": [
+    "JSONC",
+    "JSON5"
+  ],
+  "text": "JSON"
+}

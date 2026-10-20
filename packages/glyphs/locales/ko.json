@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Korean",
+  "code": "ko",
+  "aliases": [
+    "kor"
+  ],
+  "text": "KO",
+  "keywords": [
+    "한국어"
+  ]
+}

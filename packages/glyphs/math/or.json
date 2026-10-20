@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Or",
+  "code": "\\lor",
+  "aliases": [
+    "\\vee",
+    "∨"
+  ]
+}

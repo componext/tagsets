@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Domain Name System",
+  "code": "DNS",
+  "text": "DNS"
+}

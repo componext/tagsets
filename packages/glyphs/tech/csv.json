@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Comma-separated values",
+  "code": "CSV",
+  "aliases": [
+    "TSV"
+  ],
+  "text": "CSV"
+}

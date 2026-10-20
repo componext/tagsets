@@ -1,0 +1,15 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Creative Commons ShareAlike",
+  "code": "CC-BY-SA-4.0",
+  "aliases": [
+    "CC-BY-SA",
+    "CC-BY-SA-3.0"
+  ],
+  "frame": "circle",
+  "keywords": [
+    "creative commons",
+    "share alike",
+    "copyleft"
+  ]
+}

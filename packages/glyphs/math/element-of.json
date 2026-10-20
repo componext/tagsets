@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Element of",
+  "code": "\\in",
+  "aliases": [
+    "∈"
+  ]
+}

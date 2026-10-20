@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Determiner",
+  "code": "DET",
+  "aliases": [
+    "DT",
+    "PDT",
+    "WDT"
+  ],
+  "text": "DET",
+  "keywords": [
+    "article"
+  ]
+}

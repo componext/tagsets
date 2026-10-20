@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Greater than or equal",
+  "code": "\\geq",
+  "aliases": [
+    "\\ge",
+    "≥",
+    ">="
+  ]
+}

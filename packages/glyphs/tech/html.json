@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "HyperText Markup Language",
+  "code": "HTML",
+  "aliases": [
+    "HTM"
+  ],
+  "text": "HTML",
+  "short": "HTM"
+}

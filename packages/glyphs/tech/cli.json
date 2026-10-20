@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Command-line interface",
+  "code": "CLI",
+  "text": "CLI",
+  "keywords": [
+    "terminal",
+    "shell"
+  ]
+}

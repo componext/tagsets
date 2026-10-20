@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Eclipse Public License",
+  "code": "EPL-2.0",
+  "aliases": [
+    "EPL",
+    "EPL-1.0"
+  ],
+  "text": "EPL",
+  "keywords": [
+    "weak copyleft",
+    "osi"
+  ]
+}

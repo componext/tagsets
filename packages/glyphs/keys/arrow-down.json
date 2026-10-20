@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Down Arrow",
+  "code": "ArrowDown",
+  "aliases": [
+    "Down"
+  ],
+  "text": "↓"
+}

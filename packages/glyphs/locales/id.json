@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Indonesian",
+  "code": "id",
+  "aliases": [
+    "ind",
+    "in"
+  ],
+  "text": "ID",
+  "keywords": [
+    "Bahasa Indonesia"
+  ]
+}

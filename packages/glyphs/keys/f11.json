@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "F11",
+  "code": "F11",
+  "text": "F11"
+}

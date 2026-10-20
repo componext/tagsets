@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Hebrew",
+  "code": "he",
+  "aliases": [
+    "heb",
+    "iw"
+  ],
+  "text": "HE",
+  "keywords": [
+    "עברית"
+  ]
+}

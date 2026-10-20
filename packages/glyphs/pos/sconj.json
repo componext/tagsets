@@ -1,0 +1,7 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Subordinating conjunction",
+  "code": "SCONJ",
+  "text": "SCONJ",
+  "short": "SC"
+}

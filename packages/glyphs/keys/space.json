@@ -1,0 +1,11 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Space",
+  "code": " ",
+  "aliases": [
+    "Space",
+    "Spacebar",
+    "␣"
+  ],
+  "text": "SPACE"
+}

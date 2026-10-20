@@ -1,0 +1,15 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Verb",
+  "code": "VERB",
+  "aliases": [
+    "VB",
+    "VBD",
+    "VBG",
+    "VBN",
+    "VBP",
+    "VBZ"
+  ],
+  "text": "VERB",
+  "short": "V"
+}

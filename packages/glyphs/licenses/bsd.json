@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "BSD License",
+  "code": "BSD",
+  "aliases": [
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSD-4-Clause",
+    "0BSD"
+  ],
+  "text": "BSD",
+  "keywords": [
+    "permissive",
+    "osi"
+  ]
+}

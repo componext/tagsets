@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Interjection",
+  "code": "INTJ",
+  "aliases": [
+    "UH"
+  ],
+  "text": "INTJ",
+  "short": "ITJ"
+}

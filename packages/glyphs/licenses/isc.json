@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "ISC License",
+  "code": "ISC",
+  "text": "ISC",
+  "keywords": [
+    "permissive",
+    "osi"
+  ]
+}

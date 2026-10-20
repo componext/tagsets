@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Particle",
+  "code": "PART",
+  "aliases": [
+    "RP",
+    "POS",
+    "TO"
+  ],
+  "text": "PART",
+  "short": "PRT"
+}

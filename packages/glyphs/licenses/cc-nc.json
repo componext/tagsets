@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Creative Commons NonCommercial",
+  "code": "CC-BY-NC-4.0",
+  "aliases": [
+    "CC-BY-NC",
+    "CC-BY-NC-SA",
+    "CC-BY-NC-SA-4.0"
+  ],
+  "frame": "circle",
+  "keywords": [
+    "creative commons",
+    "non-commercial",
+    "money"
+  ]
+}

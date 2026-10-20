@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Norwegian",
+  "code": "no",
+  "aliases": [
+    "nor",
+    "nb",
+    "nob",
+    "nn",
+    "nno"
+  ],
+  "text": "NO",
+  "keywords": [
+    "Norsk"
+  ]
+}

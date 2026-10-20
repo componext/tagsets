@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tagsets glyph metadata",
+  "description": "One per glyph. A glyph with `text` is composed from the stroke alphabet; a drawn `<name>.svg` beside it is the fixed (24x24) variant.",
+  "type": "object",
+  "required": [
+    "label",
+    "code"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human name, used for titles and search: \"MIT License\"."
+    },
+    "code": {
+      "type": "string",
+      "description": "Canonical code in the tagset's standard: \"MIT\", \"en\", \"NOUN\"."
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Other codes that resolve to this glyph (SPDX ids, ISO 639-2 codes, Penn Treebank tags)."
+    },
+    "text": {
+      "type": "string",
+      "pattern": "^[A-Z0-9.+/↑↓←→↖↘-]{1,12}$",
+      "description": "Characters to set on one line in the stroke alphabet. The hug variant always shows it; the fixed variant shows it when it fits the square."
+    },
+    "short": {
+      "type": "string",
+      "pattern": "^[A-Z0-9.+/↑↓←→↖↘-]{1,4}$",
+      "description": "Fixed-variant text for when `text` is too wide for the square: \"AP2\" for \"APACHE2\". Without one (and without a drawn SVG), a glyph that does not fit is hug-only."
+    },
+    "frame": {
+      "enum": [
+        "none",
+        "bubble",
+        "circle",
+        "keycap"
+      ],
+      "description": "What the content sits in. Defaults to the tagset frame, else none. A drawn SVG must start with this frame."
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Extra search terms."
+    },
+    "credit": {
+      "type": "string",
+      "description": "Where a drawn glyph geometry comes from, with its license."
+    }
+  }
+}

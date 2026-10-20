@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Central processing unit",
+  "code": "CPU",
+  "text": "CPU",
+  "keywords": [
+    "processor"
+  ]
+}

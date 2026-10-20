@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "MIT License",
+  "code": "MIT",
+  "aliases": [
+    "Expat"
+  ],
+  "text": "MIT",
+  "keywords": [
+    "permissive",
+    "osi"
+  ]
+}

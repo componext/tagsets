@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Dutch",
+  "code": "nl",
+  "aliases": [
+    "nld",
+    "dut"
+  ],
+  "text": "NL",
+  "keywords": [
+    "Nederlands"
+  ]
+}

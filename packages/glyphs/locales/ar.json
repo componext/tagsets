@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Arabic",
+  "code": "ar",
+  "aliases": [
+    "ara"
+  ],
+  "text": "AR",
+  "keywords": [
+    "العربية"
+  ]
+}

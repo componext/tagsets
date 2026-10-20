@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Mozilla Public License",
+  "code": "MPL-2.0",
+  "aliases": [
+    "MPL",
+    "MPL-1.1"
+  ],
+  "text": "MPL",
+  "keywords": [
+    "weak copyleft",
+    "osi"
+  ]
+}

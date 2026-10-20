@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Times",
+  "code": "\\times",
+  "aliases": [
+    "×",
+    "*",
+    "\\cdot"
+  ]
+}

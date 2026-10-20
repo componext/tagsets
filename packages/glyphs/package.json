@@ -1,0 +1,11 @@
+{
+  "name": "tagsets-glyphs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source glyphs, grouped by tagset: one metadata JSON per tag, plus an SVG for each hand-drawn one.",
+  "license": "ISC",
+  "files": [
+    "*/*.svg",
+    "*/*.json"
+  ]
+}

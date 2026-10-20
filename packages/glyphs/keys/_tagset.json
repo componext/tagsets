@@ -1,0 +1,52 @@
+{
+  "id": "keys",
+  "prefix": "Key",
+  "label": "Keys",
+  "description": "Keyboard keys in a keycap, keyed by KeyboardEvent.key; KeyboardEvent.code values (KeyA, Digit1, ShiftLeft, NumpadEnter) resolve too. Fixed keycaps use the Mac symbol (⇧ ⌘ ⌥), hugged keycaps spell the key out.",
+  "standard": "UI Events KeyboardEvent key values",
+  "url": "https://www.w3.org/TR/uievents-key/",
+  "normalize": "key",
+  "frame": "keycap",
+  "order": [
+    "escape",
+    "tab",
+    "caps-lock",
+    "shift",
+    "control",
+    "alt",
+    "meta",
+    "fn",
+    "space",
+    "enter",
+    "backspace",
+    "delete",
+    "arrow-up",
+    "arrow-down",
+    "arrow-left",
+    "arrow-right",
+    "home",
+    "end",
+    "page-up",
+    "page-down",
+    "f1",
+    "f2",
+    "f3",
+    "f4",
+    "f5",
+    "f6",
+    "f7",
+    "f8",
+    "f9",
+    "f10",
+    "f11",
+    "f12"
+  ],
+  "tile": {
+    "from": "#D97706",
+    "to": "#92400E",
+    "inside": [
+      "#92400E",
+      "#451A03"
+    ]
+  }
+}

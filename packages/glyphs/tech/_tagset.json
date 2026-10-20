@@ -1,0 +1,16 @@
+{
+  "id": "tech",
+  "prefix": "Tech",
+  "label": "Tech abbreviations",
+  "description": "Common technology abbreviations: formats, protocols, interfaces and hardware.",
+  "standard": "Common usage",
+  "normalize": "upper",
+  "tile": {
+    "from": "#71717A",
+    "to": "#3F3F46",
+    "inside": [
+      "#52525B",
+      "#27272A"
+    ]
+  }
+}

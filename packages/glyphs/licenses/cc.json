@@ -1,0 +1,11 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Creative Commons",
+  "code": "CC",
+  "text": "CC",
+  "keywords": [
+    "creative commons",
+    "content"
+  ],
+  "frame": "circle"
+}

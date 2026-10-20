@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Hindi",
+  "code": "hi",
+  "aliases": [
+    "hin"
+  ],
+  "text": "HI",
+  "keywords": [
+    "हिन्दी"
+  ]
+}

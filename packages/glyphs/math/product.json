@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Product",
+  "code": "\\prod",
+  "aliases": [
+    "∏",
+    "\\Pi",
+    "Π"
+  ]
+}

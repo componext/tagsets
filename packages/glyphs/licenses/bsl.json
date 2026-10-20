@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Boost Software License",
+  "code": "BSL-1.0",
+  "aliases": [
+    "BSL",
+    "Boost"
+  ],
+  "text": "BSL",
+  "keywords": [
+    "permissive",
+    "osi"
+  ]
+}

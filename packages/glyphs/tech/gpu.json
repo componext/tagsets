@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Graphics processing unit",
+  "code": "GPU",
+  "text": "GPU"
+}

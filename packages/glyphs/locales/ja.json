@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Japanese",
+  "code": "ja",
+  "aliases": [
+    "jpn"
+  ],
+  "text": "JA",
+  "keywords": [
+    "日本語"
+  ]
+}

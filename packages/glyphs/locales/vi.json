@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Vietnamese",
+  "code": "vi",
+  "aliases": [
+    "vie"
+  ],
+  "text": "VI",
+  "keywords": [
+    "Tiếng Việt"
+  ]
+}

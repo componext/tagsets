@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Command",
+  "code": "Meta",
+  "aliases": [
+    "Cmd",
+    "Command",
+    "⌘"
+  ],
+  "text": "CMD",
+  "credit": "Command loops after lucide:command (ISC), scaled into the keycap"
+}

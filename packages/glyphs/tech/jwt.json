@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "JSON Web Token",
+  "code": "JWT",
+  "text": "JWT"
+}

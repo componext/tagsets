@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Public Domain",
+  "code": "PD",
+  "aliases": [
+    "Public-Domain",
+    "PDM"
+  ],
+  "frame": "circle",
+  "keywords": [
+    "no copyright",
+    "unrestricted"
+  ]
+}

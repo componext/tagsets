@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Partial derivative",
+  "code": "\\partial",
+  "aliases": [
+    "∂"
+  ]
+}

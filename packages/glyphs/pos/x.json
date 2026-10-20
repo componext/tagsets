@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Other",
+  "code": "X",
+  "aliases": [
+    "FW",
+    "LS"
+  ],
+  "text": "X",
+  "keywords": [
+    "foreign",
+    "unknown"
+  ]
+}

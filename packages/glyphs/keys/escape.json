@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Escape",
+  "code": "Escape",
+  "aliases": [
+    "Esc",
+    "⎋"
+  ],
+  "text": "ESC"
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Chinese",
+  "code": "zh",
+  "aliases": [
+    "zho",
+    "chi"
+  ],
+  "text": "ZH",
+  "keywords": [
+    "中文"
+  ]
+}

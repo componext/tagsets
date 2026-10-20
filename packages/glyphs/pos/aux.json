@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Auxiliary",
+  "code": "AUX",
+  "aliases": [
+    "MD"
+  ],
+  "text": "AUX",
+  "keywords": [
+    "modal",
+    "helper verb"
+  ]
+}

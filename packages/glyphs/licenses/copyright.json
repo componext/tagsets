@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "All rights reserved",
+  "code": "Proprietary",
+  "aliases": [
+    "Copyright",
+    "All-Rights-Reserved",
+    "LicenseRef-Proprietary"
+  ],
+  "text": "C",
+  "keywords": [
+    "proprietary",
+    "closed"
+  ],
+  "frame": "circle"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Delete",
+  "code": "Delete",
+  "aliases": [
+    "Del",
+    "⌦"
+  ],
+  "text": "DEL"
+}

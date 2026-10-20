@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "GNU Affero General Public License",
+  "code": "AGPL",
+  "aliases": [
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later"
+  ],
+  "text": "AGPL",
+  "keywords": [
+    "copyleft",
+    "network",
+    "gnu",
+    "osi"
+  ]
+}

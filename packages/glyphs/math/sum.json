@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Summation",
+  "code": "\\sum",
+  "aliases": [
+    "∑",
+    "\\Sigma",
+    "Σ"
+  ]
+}

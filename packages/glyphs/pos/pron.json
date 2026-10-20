@@ -1,0 +1,13 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Pronoun",
+  "code": "PRON",
+  "aliases": [
+    "PRP",
+    "PRP$",
+    "WP",
+    "WP$"
+  ],
+  "text": "PRON",
+  "short": "PRO"
+}

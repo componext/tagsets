@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Caps Lock",
+  "code": "CapsLock",
+  "aliases": [
+    "Caps",
+    "⇪"
+  ],
+  "text": "CAPS"
+}

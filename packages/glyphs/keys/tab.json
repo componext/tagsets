@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Tab",
+  "code": "Tab",
+  "aliases": [
+    "⇥"
+  ],
+  "text": "TAB"
+}

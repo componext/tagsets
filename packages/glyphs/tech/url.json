@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Uniform Resource Locator",
+  "code": "URL",
+  "aliases": [
+    "URI"
+  ],
+  "text": "URL",
+  "keywords": [
+    "link"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Mu",
+  "code": "\\mu",
+  "aliases": [
+    "μ"
+  ]
+}

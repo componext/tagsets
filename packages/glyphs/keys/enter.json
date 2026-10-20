@@ -1,0 +1,11 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Enter / Return",
+  "code": "Enter",
+  "aliases": [
+    "Return",
+    "↵",
+    "⏎"
+  ],
+  "text": "ENTER"
+}

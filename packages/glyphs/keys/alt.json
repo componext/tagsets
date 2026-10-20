@@ -1,0 +1,11 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Option / Alt",
+  "code": "Alt",
+  "aliases": [
+    "Option",
+    "Opt",
+    "⌥"
+  ],
+  "text": "ALT"
+}

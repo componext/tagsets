@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Creative Commons NoDerivatives",
+  "code": "CC-BY-ND-4.0",
+  "aliases": [
+    "CC-BY-ND",
+    "CC-BY-NC-ND",
+    "CC-BY-NC-ND-4.0"
+  ],
+  "frame": "circle",
+  "keywords": [
+    "creative commons",
+    "no derivatives",
+    "equals"
+  ]
+}

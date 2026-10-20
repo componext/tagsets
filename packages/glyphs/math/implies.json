@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Implies",
+  "code": "\\Rightarrow",
+  "aliases": [
+    "\\implies",
+    "⇒",
+    "=>"
+  ]
+}

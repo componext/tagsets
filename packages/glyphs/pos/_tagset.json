@@ -1,0 +1,17 @@
+{
+  "id": "pos",
+  "prefix": "Pos",
+  "label": "Parts of speech",
+  "description": "The 17 Universal Dependencies part-of-speech tags (UPOS). Common Penn Treebank tags are aliases.",
+  "standard": "Universal Dependencies UPOS",
+  "url": "https://universaldependencies.org/u/pos/",
+  "normalize": "upper",
+  "tile": {
+    "from": "#7C3AED",
+    "to": "#5B21B6",
+    "inside": [
+      "#5B21B6",
+      "#2E1065"
+    ]
+  }
+}

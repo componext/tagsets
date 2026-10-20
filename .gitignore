@@ -1,0 +1,7 @@
+node_modules/
+dist/
+packages/*/src/generated/
+*.tsbuildinfo
+preview/
+.DS_Store
+.claude/settings.local.json

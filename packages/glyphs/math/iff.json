@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "If and only if",
+  "code": "\\Leftrightarrow",
+  "aliases": [
+    "\\iff",
+    "⇔",
+    "<=>"
+  ]
+}

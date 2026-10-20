@@ -1,0 +1,12 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Polish",
+  "code": "pl",
+  "aliases": [
+    "pol"
+  ],
+  "text": "PL",
+  "keywords": [
+    "Polski"
+  ]
+}

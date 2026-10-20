@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Page Down",
+  "code": "PageDown",
+  "aliases": [
+    "PgDn",
+    "⇟"
+  ],
+  "text": "PGDN"
+}

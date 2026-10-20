@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Symbol",
+  "code": "SYM",
+  "aliases": [
+    "$",
+    "#"
+  ],
+  "text": "SYM"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Plus-minus",
+  "code": "\\pm",
+  "aliases": [
+    "±",
+    "+-"
+  ]
+}

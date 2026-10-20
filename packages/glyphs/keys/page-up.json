@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Page Up",
+  "code": "PageUp",
+  "aliases": [
+    "PgUp",
+    "⇞"
+  ],
+  "text": "PGUP"
+}

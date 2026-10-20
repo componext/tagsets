@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Square root",
+  "code": "\\sqrt",
+  "aliases": [
+    "√",
+    "\\surd"
+  ]
+}

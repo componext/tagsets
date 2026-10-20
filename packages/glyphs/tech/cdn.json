@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Content delivery network",
+  "code": "CDN",
+  "text": "CDN"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Apache License",
+  "code": "Apache-2.0",
+  "aliases": [
+    "Apache",
+    "ASL",
+    "ASL-2.0"
+  ],
+  "text": "APACHE2",
+  "short": "AP2",
+  "keywords": [
+    "permissive",
+    "osi",
+    "patent"
+  ]
+}

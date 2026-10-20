@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Random-access memory",
+  "code": "RAM",
+  "text": "RAM",
+  "keywords": [
+    "memory"
+  ]
+}

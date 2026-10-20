@@ -1,0 +1,17 @@
+{
+  "id": "licenses",
+  "prefix": "License",
+  "label": "Licenses",
+  "description": "Open-source and content licenses, keyed by SPDX identifier. Versions and -only/-or-later suffixes resolve to the family glyph.",
+  "standard": "SPDX License List",
+  "url": "https://spdx.org/licenses/",
+  "normalize": "spdx",
+  "tile": {
+    "from": "#059669",
+    "to": "#065F46",
+    "inside": [
+      "#065F46",
+      "#022C22"
+    ]
+  }
+}

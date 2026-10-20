@@ -1,0 +1,16 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Punctuation",
+  "code": "PUNCT",
+  "aliases": [
+    ".",
+    ",",
+    ":",
+    "``",
+    "''",
+    "-LRB-",
+    "-RRB-"
+  ],
+  "text": "PUNCT",
+  "short": "PCT"
+}

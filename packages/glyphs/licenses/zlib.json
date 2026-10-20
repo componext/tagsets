@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "zlib License",
+  "code": "Zlib",
+  "text": "ZLIB",
+  "keywords": [
+    "permissive",
+    "osi"
+  ]
+}

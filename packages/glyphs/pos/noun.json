@@ -1,0 +1,11 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Noun",
+  "code": "NOUN",
+  "aliases": [
+    "NN",
+    "NNS"
+  ],
+  "text": "NOUN",
+  "short": "N"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Backspace",
+  "code": "Backspace",
+  "aliases": [
+    "⌫"
+  ],
+  "text": "BACKSPACE"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Empty set",
+  "code": "\\emptyset",
+  "aliases": [
+    "\\varnothing",
+    "∅"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "English",
+  "code": "en",
+  "aliases": [
+    "eng"
+  ],
+  "text": "EN"
+}

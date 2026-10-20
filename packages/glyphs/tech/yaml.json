@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "YAML",
+  "code": "YAML",
+  "aliases": [
+    "YML"
+  ],
+  "text": "YAML",
+  "short": "YML"
+}

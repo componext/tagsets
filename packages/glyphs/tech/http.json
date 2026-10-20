@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Hypertext Transfer Protocol",
+  "code": "HTTP",
+  "aliases": [
+    "HTTPS"
+  ],
+  "text": "HTTP"
+}

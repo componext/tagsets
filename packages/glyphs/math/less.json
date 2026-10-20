@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Less than",
+  "code": "<",
+  "aliases": [
+    "\\lt"
+  ]
+}

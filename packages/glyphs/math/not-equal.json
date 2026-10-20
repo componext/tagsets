@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Not equal",
+  "code": "\\neq",
+  "aliases": [
+    "\\ne",
+    "≠",
+    "!="
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "And",
+  "code": "\\land",
+  "aliases": [
+    "\\wedge",
+    "∧"
+  ]
+}

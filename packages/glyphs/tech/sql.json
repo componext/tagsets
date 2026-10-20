@@ -1,0 +1,9 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Structured Query Language",
+  "code": "SQL",
+  "text": "SQL",
+  "keywords": [
+    "database"
+  ]
+}

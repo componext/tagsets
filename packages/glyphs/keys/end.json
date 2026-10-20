@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "End",
+  "code": "End",
+  "aliases": [
+    "⇲"
+  ],
+  "text": "END",
+  "short": "↘"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Copyleft",
+  "code": "Copyleft",
+  "frame": "circle",
+  "keywords": [
+    "share alike",
+    "reciprocal"
+  ]
+}

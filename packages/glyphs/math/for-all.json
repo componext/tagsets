@@ -1,0 +1,8 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "For all",
+  "code": "\\forall",
+  "aliases": [
+    "∀"
+  ]
+}

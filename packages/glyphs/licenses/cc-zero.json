@@ -1,0 +1,15 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "CC0 Public Domain Dedication",
+  "code": "CC0-1.0",
+  "aliases": [
+    "CC0"
+  ],
+  "text": "0",
+  "keywords": [
+    "creative commons",
+    "public domain",
+    "waiver"
+  ],
+  "frame": "circle"
+}

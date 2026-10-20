@@ -1,0 +1,6 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Secure Shell",
+  "code": "SSH",
+  "text": "SSH"
+}

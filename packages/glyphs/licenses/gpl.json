@@ -1,0 +1,18 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "GNU General Public License",
+  "code": "GPL",
+  "aliases": [
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+    "GNU-GPL"
+  ],
+  "text": "GPL",
+  "keywords": [
+    "copyleft",
+    "gnu",
+    "osi"
+  ]
+}

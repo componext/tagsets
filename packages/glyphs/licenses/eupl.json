@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "European Union Public Licence",
+  "code": "EUPL-1.2",
+  "aliases": [
+    "EUPL",
+    "EUPL-1.1"
+  ],
+  "text": "EUPL",
+  "keywords": [
+    "copyleft",
+    "osi"
+  ]
+}

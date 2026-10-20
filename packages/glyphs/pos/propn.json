@@ -1,0 +1,14 @@
+{
+  "$schema": "../glyph.schema.json",
+  "label": "Proper noun",
+  "code": "PROPN",
+  "aliases": [
+    "NNP",
+    "NNPS"
+  ],
+  "text": "PROPN",
+  "short": "NP",
+  "keywords": [
+    "name"
+  ]
+}

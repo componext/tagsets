@@ -1,0 +1,53 @@
+{
+  "name": "tagsets-react",
+  "version": "0.1.0",
+  "description": "Tagsets glyphs as React components: licenses, locales, part-of-speech tags, tech abbreviations, keys and math symbols on Lucide's 24px stroke grid.",
+  "license": "ISC",
+  "homepage": "https://github.com/componext/tagsets#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/componext/tagsets.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/componext/tagsets/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./dynamic": {
+      "types": "./dist/dynamic.d.ts",
+      "default": "./dist/dynamic.js"
+    },
+    "./glyphs/*": {
+      "types": "./dist/generated/glyphs/*.d.ts",
+      "default": "./dist/generated/glyphs/*.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE-lucide"
+  ],
+  "keywords": [
+    "icons",
+    "glyphs",
+    "react",
+    "spdx",
+    "bcp47",
+    "universal-dependencies",
+    "lucide",
+    "keyboard",
+    "math"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "react": "^19.3.1"
+  }
+}
