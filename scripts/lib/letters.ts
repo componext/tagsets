@@ -93,7 +93,8 @@ export const FITS: readonly Fit[] = ['fixed', 'hug'];
 /**
  * What a glyph's content sits in:
  * - `none`: nothing; text or symbol on the bare grid.
- * - `bubble`: a speech bubble with its tail at the bottom left (locales).
+ * - `bubble`: Lucide's message-square, a speech bubble with its tail at the
+ *   bottom left (locales).
  * - `circle`: a 20px circle, a pill when hugging (CC-style marks).
  * - `keycap`: a key with a front lip (keys).
  */
@@ -122,12 +123,20 @@ interface FrameSpec {
  * Inside a frame, content keeps at least 1px of air from the frame's stroke. */
 export const FRAME_SPECS: Readonly<Record<Frame, FrameSpec>> = {
   none: { top: 8, fixedMax: 20, pad: 0, draw: () => [] },
+  // Lucide's message-square (ISC), path for path at w=20: a body from y 3 to
+  // 19 with the tail running off its left edge. Hugging widens the body only;
+  // the tail keeps Lucide's exact curve.
   bubble: {
-    top: 6,
+    top: 7,
     fixedMax: 14,
     pad: 4,
-    content: [5, 5, 19, 15],
-    draw: (w) => [{ tag: 'path', attrs: { d: `M2 4a2 2 0 0 1 2-2h${w - 4}a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-${w - 8}l-4 4v-4a2 2 0 0 1-2-2z` } }],
+    content: [5, 6, 19, 16],
+    draw: (w) => [
+      {
+        tag: 'path',
+        attrs: { d: `M${2 + w} 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h${w - 4}a2 2 0 0 1 2 2z` },
+      },
+    ],
   },
   circle: {
     top: 8,

@@ -91,7 +91,7 @@ Every component takes `size` (24, the height), `fit` (`fixed`), `color` (`curren
 5. **Tiles inline, statics anywhere.** SVG files and sprites work in `<img>`, CSS and `<use>`. Tile ids are suffixed with the glyph id, so any number can be inlined on one page. Tiles are square, so round the corners in CSS (16px at 72px). A hug-only glyph's tile shrinks it to fit.
 6. **Codes resolve, they are not validated.** `getGlyph('licenses', 'GPL-2.0-only')` returns the GPL family glyph; versions share it (so `Apache-1.1` shows `AP2`). Keys follow macOS: `Meta` is `⌘`/`CMD`, `Alt` is `⌥`/`ALT`. A code nobody claims returns `undefined` (React: `fallback`, Vue: `#fallback` slot, vanilla: the placeholder stays).
 7. **The dynamic entry imports everything.** `tagsets-react/dynamic` and `tagsets-vue/dynamic` bundle all 195 glyphs (about 130KB unminified, 12KB gzipped). Import named glyphs from the package root when the codes are known at build time.
-8. **Marks and credits.** The CC glyphs are drawn here, not copied, but "CC" and its marks are Creative Commons trademarks: use them to indicate a CC license. `⌘` follows Lucide's `command` icon (ISC, `LICENSE-lucide`).
+8. **Marks and credits.** The CC glyphs are drawn here, not copied, but "CC" and its marks are Creative Commons trademarks: use them to indicate a CC license. The locale bubble is Lucide's `message-square`, path for path, and `⌘` follows Lucide's `command` icon (both ISC, `LICENSE-lucide`).
 
 ## How glyphs are made
 
@@ -104,7 +104,7 @@ Text sits in a **frame**, set per tagset or per glyph:
 | Frame | Fixed holds | Hug | Used for |
 |---|---|---|---|
 | `none` | 20 units: three letters | text + 2 each side | licenses, POS, tech, math |
-| `bubble` | 14 units: two letters | bubble widens | locales |
+| `bubble` | 14 units: two letters | body widens, tail stays | locales (Lucide `message-square`) |
 | `circle` | 12 units: two letters | becomes a pill | `CC`, `©`, CC0 |
 | `keycap` | 14 units: two letters | keycap grows | keys |
 
