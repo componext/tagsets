@@ -105,7 +105,10 @@ export const FITS: readonly Fit[] = ['fixed', 'hug'];
  * - `bubble`: Lucide's message-square, a speech bubble with its tail at the
  *   bottom left. No tagset uses it by default.
  * - `circle`: a 20px circle, a pill when hugging (CC-style marks).
- * - `keycap`: a key with a front lip (keys).
+ * - `keycap`: Lucide's square, 18px with 2px corners, wider when hugging (keys).
+ *
+ * Inside a frame, text and drawn content keep 2px of air from the frame's
+ * stroke; nothing anywhere comes closer than 1px to a stroke it does not join.
  */
 export type Frame = 'none' | 'bubble' | 'circle' | 'keycap';
 export const FRAMES: readonly Frame[] = ['none', 'bubble', 'circle', 'keycap'];
@@ -116,6 +119,8 @@ export interface Element {
 }
 
 interface FrameSpec {
+  /** Distance from the canvas edge to the frame's stroke centre. */
+  inset: number;
   /** Cap line of the text: vertically centred in the frame's face. */
   top: number;
   /** Widest text the fixed (24x24) variant takes, in stroke-centre units. */
@@ -124,7 +129,7 @@ interface FrameSpec {
   pad: number;
   /** Where drawn content may go in a fixed glyph (stroke centres), if the frame constrains it. */
   content?: readonly [x0: number, y0: number, x1: number, y1: number];
-  /** The frame, `w` units wide between its stroke centres, starting at x=2. */
+  /** The frame, `w` units wide between its stroke centres, starting at x=inset. */
   draw(w: number): Element[];
 }
 
@@ -132,11 +137,12 @@ interface FrameSpec {
  * Inside a frame, content keeps at least 1px of air from the frame's stroke. */
 export const FRAME_SPECS: Readonly<Record<Frame, FrameSpec>> = {
   // Two characters: 16 units, x 4..20.
-  none: { top: 7, fixedMax: 20, pad: 0, draw: () => [] },
+  none: { inset: 2, top: 7, fixedMax: 20, pad: 0, draw: () => [] },
   // Lucide's message-square (ISC), path for path at w=20: a body from y 3 to
   // 19 with the tail running off its left edge. Hugging widens the body only;
   // the tail keeps Lucide's exact curve.
   bubble: {
+    inset: 2,
     top: 6,
     fixedMax: 14,
     pad: 4,
@@ -151,6 +157,7 @@ export const FRAME_SPECS: Readonly<Record<Frame, FrameSpec>> = {
   // One character fits the circle; a pill's round ends need 6 units of padding
   // to clear a 10-tall line.
   circle: {
+    inset: 2,
     top: 7,
     fixedMax: 6,
     pad: 6,
@@ -159,16 +166,15 @@ export const FRAME_SPECS: Readonly<Record<Frame, FrameSpec>> = {
         ? [{ tag: 'circle', attrs: { cx: '12', cy: '12', r: '10' } }]
         : [{ tag: 'path', attrs: { d: `M12 2h${w - 20}a10 10 0 0 1 0 20h-${w - 20}a10 10 0 0 1 0-20z` } }],
   },
-  // The key's face runs y 2..18 above the lip: one character, 1px of air.
+  // Lucide's square: stroke centres 3..21, inside 4..20. A character (ink
+  // y 6..18) or drawn content (ink within 6..18) keeps 2px of air all round.
   keycap: {
-    top: 5,
-    fixedMax: 14,
+    inset: 3,
+    top: 7,
+    fixedMax: 10,
     pad: 4,
-    content: [5, 5, 19, 15],
-    draw: (w): Element[] => [
-      { tag: 'rect', attrs: { x: '2', y: '2', width: String(w), height: '20', rx: '3' } },
-      { tag: 'path', attrs: { d: `M2 18h${w}` } },
-    ],
+    content: [7, 7, 17, 17],
+    draw: (w): Element[] => [{ tag: 'rect', attrs: { x: '3', y: '3', width: String(w), height: '18', rx: '2' } }],
   },
 };
 
@@ -180,6 +186,12 @@ export function textWidth(text: string): number {
     return letter.width;
   });
   return widths.reduce((a, b) => a + b, 0) + GAP * (chars.length - 1);
+}
+
+/** A frame's elements for a variant `width` wide (24 for fixed). */
+export function frameElements(frame: Frame, width: number): Element[] {
+  const spec = FRAME_SPECS[frame];
+  return spec.draw(width - 2 * spec.inset);
 }
 
 /** Whether text fits a frame's fixed (24x24) variant. */
@@ -210,9 +222,9 @@ export function compose(text: string, frame: Frame, fit: Fit): Composed {
   const tw = textWidth(text);
   if (fit === 'fixed') {
     if (tw > spec.fixedMax) throw new Error(`"${text}" is ${tw} units wide; a fixed ${frame} glyph fits ${spec.fixedMax}`);
-    return { width: 24, elements: [...spec.draw(20), ...letters(text, Math.floor((24 - tw) / 2), spec.top)] };
+    return { width: 24, elements: [...frameElements(frame, 24), ...letters(text, Math.floor((24 - tw) / 2), spec.top)] };
   }
   if (frame === 'none') return { width: tw + 4, elements: letters(text, 2, spec.top) };
-  const w = Math.max(20, tw + 2 * spec.pad);
-  return { width: w + 4, elements: [...spec.draw(w), ...letters(text, 2 + Math.floor((w - tw) / 2), spec.top)] };
+  const w = Math.max(24 - 2 * spec.inset, tw + 2 * spec.pad);
+  return { width: w + 2 * spec.inset, elements: [...spec.draw(w), ...letters(text, spec.inset + Math.floor((w - tw) / 2), spec.top)] };
 }

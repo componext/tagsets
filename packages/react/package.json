@@ -1,6 +1,6 @@
 {
   "name": "tagsets-react",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Tagsets glyphs as React components: licenses, locales, part-of-speech tags, tech abbreviations, keys and math symbols on Lucide's 24px stroke grid.",
   "license": "ISC",
   "homepage": "https://github.com/componext/tagsets#readme",

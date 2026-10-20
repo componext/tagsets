@@ -9,14 +9,16 @@
  * A glyph with `text` is composed from the stroke alphabet: its hug variant
  * always, its fixed variant when the text (or its `short` form) fits the
  * square. A drawn SVG, when present, is the fixed variant; with no `text` it
- * is the hug variant too (cropped to its ink when unframed).
+ * is the hug variant too (cropped to its ink when unframed). Every variant must
+ * also pass the spacing rules in spacing.ts.
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { svgPathBbox } from 'svg-path-bbox';
-import { FRAMES, FRAME_SPECS, LETTERS, compose, fitsFixed, type Element, type Fit, type Frame } from './letters.ts';
+import { FRAMES, FRAME_SPECS, LETTERS, compose, fitsFixed, frameElements, type Element, type Fit, type Frame } from './letters.ts';
 import { normalizeCode, type Normalize } from '../runtime/resolve.ts';
+import { spacingProblems } from './spacing.ts';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../..');
 export const GLYPHS_DIR = join(ROOT, 'packages/glyphs');
@@ -225,7 +227,7 @@ export function lintSvg(svg: string, where: string, frame: Frame = 'none'): stri
   // A framed drawing starts with the frame exactly as the layout draws it, so
   // drawn and composed glyphs in one tagset share one frame.
   const spec = FRAME_SPECS[frame];
-  const expected = toNodes(spec.draw(20));
+  const expected = toNodes(frameElements(frame, 24));
   const actual = parsed.children.slice(0, expected.length);
   if (JSON.stringify(actual.map(([t, a]) => [t, attrText(a)])) !== JSON.stringify(expected.map(([t, a]) => [t, attrText(a)]))) {
     problems.push(`${where}: a ${frame} glyph starts with ${expected.map(([t, a]) => `<${t} ${attrText(a)} />`).join(' ')}`);
@@ -355,6 +357,9 @@ export function loadGlyphs(): { tagsets: Tagset[]; glyphs: Glyph[]; problems: st
       if (!hug) continue;
       if (fixed && fixed.from !== 'drawn') problems.push(...lintNodes(fixed.nodes, `${where} (fixed)`));
       problems.push(...lintNodes(hug.nodes, `${where} (hug)`, hug.x, hug.width));
+      const frameCount = (v: Variant) => (frame === 'none' ? 0 : frameElements(frame, v.width).length);
+      if (fixed) problems.push(...spacingProblems(fixed.nodes, frameCount(fixed), `${where} (fixed)`));
+      if (!fixed || hug.nodes !== fixed.nodes) problems.push(...spacingProblems(hug.nodes, frameCount(hug), `${where} (hug)`));
 
       glyphs.push({ tagset, name, id, component, meta, frame, ...(fixed ? { fixed } : {}), hug });
     }

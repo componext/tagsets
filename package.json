@@ -25,6 +25,7 @@
     "react-dom": "^19.3.1",
     "svg-path-bbox": "^2.1.0",
     "svgo": "^4.1.0",
+    "svgpath": "^2.6.0",
     "tagsets": "workspace:*",
     "tagsets-react": "workspace:*",
     "tagsets-vue": "workspace:*",

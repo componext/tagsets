@@ -29,6 +29,9 @@ importers:
       svgo:
         specifier: ^4.1.0
         version: 4.1.0
+      svgpath:
+        specifier: ^2.6.0
+        version: 2.6.0
       tagsets:
         specifier: workspace:*
         version: link:packages/vanilla
