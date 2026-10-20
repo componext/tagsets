@@ -9,7 +9,7 @@
  * corners (the launcher uses 16-17px). Every id is suffixed with the glyph id,
  * so any number of tiles can be inlined on one page.
  */
-import { FRAME_SPECS } from './letters.ts';
+import { frameElements } from './letters.ts';
 import type { Glyph, Node, Variant } from './source.ts';
 
 const SIZE = 72;
@@ -31,7 +31,7 @@ export function tileSvg(g: Glyph, v: Variant = g.fixed ?? g.hug): string {
   const at = (dy: number) => `translate(${n(tx)} ${n(ty + dy)}) scale(${n(scale)})`;
   const stroke = `stroke-width="${n(STROKE / scale)}" stroke-linecap="round" stroke-linejoin="round"`;
   const art = v.nodes.map(el).join('');
-  const frame = FRAME_SPECS[g.frame].draw(v.width - 4)[0];
+  const frame = frameElements(g.frame, v.width)[0];
   const shape = frame ? `<${frame.tag} ${Object.entries(frame.attrs).map(([a, b]) => `${a}="${b}"`).join(' ')}/>` : '';
 
   return [

@@ -19,17 +19,17 @@ Every glyph also ships as a 72px tile in the style of the UNA launcher icons, in
 
 Every glyph is 24 tall and comes in up to two widths, named after Figma's auto-layout sizing:
 
-- **`hug`**: as wide as its content. The full text, always on one line: `MIT`, `NOUN`, `APACHE2`, `SHIFT`. Frames stretch with it: a circle becomes a pill, a keycap grows. An unframed glyph can be narrower than it is tall (`X`, `×`).
+- **`hug`**: as wide as its content. The full text, always on one line: `MIT`, `NOUN`, `APACHE2`, `SHIFT`. Frames stretch with it: a circle becomes a pill, a key's square widens. An unframed glyph can be narrower than it is tall (`X`, `×`).
 - **`fixed`**: the 24×24 square, which holds two characters (one inside a frame). When the full text does not fit, the glyph uses a recognizable short form (`N` for `NOUN`, `NP` for `PROPN`) or its symbol (`⇧`, `⏎`, `⌘`). When neither exists, there is no fixed form and `fixed` falls back to `hug`.
 
 | Glyph | Fixed | Hug |
 |---|---|---|
 | `LocaleEn` | `EN`, filling the square | `EN` cropped to its ink (20 wide) |
 | `PosNoun`, `PosPropn` | `N`, `NP` | `NOUN` (40), `PROPN` (50) |
-| `KeyShift`, `KeyHome` | `⇧`, `↖` | `SHIFT` keycap (58), `HOME` keycap (48) |
+| `KeyShift`, `KeyHome` | `⇧`, `↖` | `SHIFT` keycap (60), `HOME` keycap (50) |
 | `KeyK`, `LicenseCc` | same as hug | 24 |
 | `MathSum` | `∑` in the square | `∑` cropped to its ink (16) |
-| `LicenseMit`, `TechApi`, `LicenseApache`, `KeyF1` | none | `MIT` (30), `API` (30), `APACHE2` (70), `F1` keycap (28) |
+| `LicenseMit`, `TechApi`, `LicenseApache`, `KeyF1` | none | `MIT` (30), `API` (30), `APACHE2` (70), `F1` keycap (30) |
 
 61 glyphs are hug-only: the three-letter and longer license, tech and POS codes with no recognizable two-character short form, plus `Fn`, `F1`–`F12`, `PgUp` and `PgDn`. Nothing is ever set on two lines.
 
@@ -91,7 +91,7 @@ Every component takes `size` (24, the height), `fit` (`fixed`), `color` (`curren
 5. **Tiles inline, statics anywhere.** SVG files and sprites work in `<img>`, CSS and `<use>`. Tile ids are suffixed with the glyph id, so any number can be inlined on one page. Tiles are square, so round the corners in CSS (16px at 72px). A hug-only glyph's tile shrinks it to fit.
 6. **Codes resolve, they are not validated.** `getGlyph('licenses', 'GPL-2.0-only')` returns the GPL family glyph; versions share it (so `Apache-1.1` shows `APACHE2`). Keys follow macOS: `Meta` is `⌘`/`CMD`, `Alt` is `⌥`/`ALT`. A code nobody claims returns `undefined` (React: `fallback`, Vue: `#fallback` slot, vanilla: the placeholder stays).
 7. **The dynamic entry imports everything.** `tagsets-react/dynamic` and `tagsets-vue/dynamic` bundle all 195 glyphs (about 130KB unminified, 12KB gzipped). Import named glyphs from the package root when the codes are known at build time.
-8. **Marks and credits.** The CC glyphs are drawn here, not copied, but "CC" and its marks are Creative Commons trademarks: use them to indicate a CC license. The `bubble` frame is Lucide's `message-square`, path for path, and `⌘` follows Lucide's `command` icon (both ISC, `LICENSE-lucide`). The letterforms follow Nunito's rounded capitals, redrawn as single strokes.
+8. **Marks and credits.** The CC glyphs are drawn here, not copied, but "CC" and its marks are Creative Commons trademarks: use them to indicate a CC license. The `bubble` frame is Lucide's `message-square`, path for path, and `⌘` follows Lucide's `command` icon, and keys sit in Lucide's `square` (all ISC, `LICENSE-lucide`). The letterforms follow Nunito's rounded capitals, redrawn as single strokes.
 
 ## How glyphs are made
 
@@ -105,10 +105,12 @@ Text sits in a **frame**, set per tagset or per glyph:
 |---|---|---|---|
 | `none` | two characters | text + 2 each side | locales, licenses, POS, tech, math |
 | `circle` | one character | becomes a pill | `©`, CC0 |
-| `keycap` | one character | keycap grows | keys |
+| `keycap` | one character | square widens | keys (Lucide `square`) |
 | `bubble` | one character | body widens, tail stays | no tagset by default (Lucide `message-square`) |
 
-The square is small: two 6-unit characters and their 4-unit gap fill its 20-unit live area, and a frame leaves room for one. Three-letter codes need a recognizable two-character short form (`NP`, `CC`) or a symbol, or stay hug-only.
+The square is small: two 6-unit characters and their 4-unit gap fill its 20-unit live area, and a frame leaves room for one.
+
+Keys sit in Lucide's `square` (18px, 2px corners); language codes and other tags stand free. Two spacing rules hold everywhere, and the build checks them on every variant (`scripts/lib/spacing.ts`): separate strokes either join or keep at least 1px of air between them, and anything inside a frame keeps at least 2px of air from it (a slash may cross it). A character in a key has exactly 2px above and below. Three-letter codes need a recognizable two-character short form (`NP`, `CC`) or a symbol, or stay hug-only.
 
 ### Adding a glyph
 
@@ -128,7 +130,7 @@ A new tagset is a folder with a `_tagset.json`: `id`, a PascalCase `prefix`, `la
 | `pnpm preview` | Write `preview/index.html`: every glyph in both fits and as a tile, glyphs in use, the alphabet |
 | `pnpm versions check` / `set X.Y.Z` | Check, or set, the one version the three published packages share |
 
-The build fails on any rule a glyph breaks: wrong root attributes, style on children, geometry outside the grid, a drawn glyph whose frame differs from its tagset's, content outside its frame, a short form that does not fit or is never used, two glyphs claiming one code, a character the alphabet lacks.
+The build fails on any rule a glyph breaks: wrong root attributes, style on children, geometry outside the grid, strokes closer than 1px without joining, content within 2px of its frame, a drawn glyph whose frame differs from its tagset's, content outside its frame, a short form that does not fit or is never used, two glyphs claiming one code, a character the alphabet lacks.
 
 Requires Node 22.18+ (scripts run as TypeScript directly) and pnpm.
 

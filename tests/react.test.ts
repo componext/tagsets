@@ -23,7 +23,7 @@ test('fit picks the square or the hugging width; size is the height', () => {
   assert.match(hug, /class="tagsets tagsets-pos-noun tagsets-hug"/);
   assert.match(render(createElement(LicenseLgpl)), /width="40" height="24" viewBox="0 0 40 24".*tagsets-hug/, 'no fixed form: falls back to hug');
   assert.match(render(createElement(LicenseLgpl, { size: '1.5em' })), /width="2.5em" height="1.5em"/);
-  assert.match(render(createElement(KeyShift, { fit: 'hug' })), /width="58".*<rect width="54" height="20"/);
+  assert.match(render(createElement(KeyShift, { fit: 'hug' })), /width="60".*<rect width="54" height="18" x="3" y="3" rx="2"/);
   assert.equal(LicenseLgpl.fixed, null);
   assert.equal(LicenseApache.fixed, null);
   assert.equal(LicenseApache.hug.width, 70);
@@ -62,7 +62,7 @@ test('TagGlyph renders the glyph for a code, titled with its label', () => {
   assert.match(html, /tagsets-locale-pt/);
   assert.match(html, /width="20"/);
   assert.match(html, /<title>Portuguese<\/title>/);
-  assert.match(render(createElement(TagGlyph, { tagset: 'keys', code: 'ShiftLeft', fit: 'hug' })), /width="58".*<title>Shift<\/title>/);
+  assert.match(render(createElement(TagGlyph, { tagset: 'keys', code: 'ShiftLeft', fit: 'hug' })), /width="60".*<title>Shift<\/title>/);
   assert.doesNotMatch(render(createElement(TagGlyph, { tagset: 'locales', code: 'pt', title: '' })), /<title>/);
   assert.equal(render(createElement(TagGlyph, { tagset: 'locales', code: 'xx' })), '');
   assert.equal(render(createElement(TagGlyph, { tagset: 'locales', code: 'xx', fallback: createElement('span', null, 'xx') })), '<span>xx</span>');
