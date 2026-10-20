@@ -1,0 +1,66 @@
+name: Release
+
+# Publishing a GitHub release tagged vX.Y.Z publishes tagsets, tagsets-react
+# and tagsets-vue at X.Y.Z to npm, through npm trusted publishing: npm trusts
+# this workflow file in componext/tagsets (running in the `npm` environment),
+# so there is no npm token to store or rotate, and every version gets a
+# provenance statement. A prerelease publishes under the `next` dist-tag.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write # the OIDC token npm trusted publishing exchanges for a publish credential
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      # No dependency cache in the release job: what ships is built from a clean install.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Versions match the release tag
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: pnpm versions check "$TAG"
+
+      - name: Build, typecheck, test
+        run: pnpm check
+
+      - name: Publish
+        env:
+          DIST_TAG: ${{ github.event.release.prerelease && 'next' || 'latest' }}
+        run: |
+          echo "npm $(npm --version)" # trusted publishing needs npm 11.5.1 or later
+          for dir in vanilla react vue; do
+            cd "packages/$dir"
+            name=$(node -p "require('./package.json').name")
+            version=$(node -p "require('./package.json').version")
+            # Re-running a release skips what already went out instead of failing on it.
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version is already on npm; skipping"
+            else
+              npm publish --access public --tag "$DIST_TAG"
+            fi
+            cd - >/dev/null
+          done

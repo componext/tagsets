@@ -14,7 +14,8 @@
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc -p tsconfig.json",
     "check": "pnpm run build && pnpm run typecheck && pnpm run test",
-    "clean": "rm -rf packages/*/dist packages/*/src/generated packages/*/tsconfig.tsbuildinfo preview"
+    "clean": "rm -rf packages/*/dist packages/*/src/generated packages/*/tsconfig.tsbuildinfo preview",
+    "versions": "node scripts/versions.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
