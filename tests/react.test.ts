@@ -19,14 +19,14 @@ test('a glyph renders with Lucide defaults and is decorative without a title', (
 test('fit picks the square or the hugging width; size is the height', () => {
   assert.match(render(createElement(PosNoun)), /width="24" height="24" viewBox="0 0 24 24"/);
   const hug = render(createElement(PosNoun, { fit: 'hug', size: 12 }));
-  assert.match(hug, /width="20" height="12" viewBox="0 0 40 24"/);
+  assert.match(hug, /width="24" height="12" viewBox="0 0 48 24"/);
   assert.match(hug, /class="tagsets tagsets-pos-noun tagsets-hug"/);
-  assert.match(render(createElement(LicenseLgpl)), /width="40" height="24" viewBox="0 0 40 24".*tagsets-hug/, 'no fixed form: falls back to hug');
-  assert.match(render(createElement(LicenseLgpl, { size: '1.5em' })), /width="2.5em" height="1.5em"/);
+  assert.match(render(createElement(LicenseLgpl)), /width="48" height="24" viewBox="0 0 48 24".*tagsets-hug/, 'no fixed form: falls back to hug');
+  assert.match(render(createElement(LicenseLgpl, { size: '1.5em' })), /width="3em" height="1.5em"/);
   assert.match(render(createElement(KeyShift, { fit: 'hug' })), /width="60".*<rect width="54" height="18" x="3" y="3" rx="2"/);
   assert.equal(LicenseLgpl.fixed, null);
   assert.equal(LicenseApache.fixed, null);
-  assert.equal(LicenseApache.hug.width, 70);
+  assert.equal(LicenseApache.hug.width, 84);
 });
 
 test('size, color, strokeWidth, className and extra attributes apply', () => {

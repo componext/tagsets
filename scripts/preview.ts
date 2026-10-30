@@ -8,7 +8,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { LETTERS, compose } from './lib/letters.ts';
+import { LETTERS, SIZES, compose } from './lib/letters.ts';
 import { ROOT, ROOT_ATTRS, loadGlyphs, toNodes, type Glyph, type Node, type Variant } from './lib/source.ts';
 import { tileSvg } from './lib/tiles.ts';
 
@@ -88,10 +88,13 @@ const inUse = `<div class="use">
   <p><span class="lbl">Tokens, fixed</span> The${inline('pos-det', 'fixed')} quick${inline('pos-adj', 'fixed')} fox${inline('pos-noun', 'fixed')} jumps${inline('pos-verb', 'fixed')} over${inline('pos-adp', 'fixed')} Rome${inline('pos-propn', 'fixed')}${inline('pos-punct', 'fixed')}</p>
 </div>`;
 
+/** Each character in both optical sizes: text (freestanding) and framed (in a key). */
 const alphabet = Object.keys(LETTERS)
   .map((c) => {
-    const { width, elements } = compose(c, 'none', 'fixed');
-    return `<figure class="card letter" data-search="${esc(c.toLowerCase())}"><div class="art">${svg({ x: 0, width, nodes: toNodes(elements) }, 'show')}</div><figcaption><b>${esc(c)}</b><span>${LETTERS[c]!.width} units</span></figcaption></figure>`;
+    const text = compose(c, 'none', 'fixed');
+    const framed = compose(c, 'keycap', 'fixed');
+    const both = `${svg({ x: 0, width: text.width, nodes: toNodes(text.elements) }, 'show')}${svg({ x: 0, width: framed.width, nodes: toNodes(framed.elements) }, 'show')}`;
+    return `<figure class="card letter" data-search="${esc(c.toLowerCase())}"><div class="art pair-art">${both}</div><figcaption><b>${esc(c)}</b></figcaption></figure>`;
   })
   .join('\n');
 
@@ -127,6 +130,7 @@ svg.show,.art svg{height:var(--size);width:calc(var(--size) * var(--k))}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:8px}
 .card{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 10px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
 .art{height:64px;display:grid;place-items:center;max-width:100%;overflow:hidden}
+.pair-art{display:flex;gap:10px;align-items:center}
 .art .v-hug{display:none}
 [data-fit="hug"] .art .v-fixed{display:none}
 [data-fit="hug"] .art .v-hug{display:block}
@@ -177,7 +181,7 @@ svg.inline{height:1.4em;width:calc(1.4em * var(--k));vertical-align:middle}
 </section>
 ${sections}
 <section data-tagset="alphabet">
-  <header><h2>Stroke alphabet</h2><p>${Object.keys(LETTERS).length} characters · cap height 8 · width in grid units</p></header>
+  <header><h2>Stroke alphabet</h2><p>${Object.keys(LETTERS).length} characters in two sizes: text ${SIZES.text.cell}×${SIZES.text.cap} (freestanding) and framed ${SIZES.framed.cell}×${SIZES.framed.cap} (in a key)</p></header>
   <div class="grid">${alphabet}</div>
 </section>
 </main>

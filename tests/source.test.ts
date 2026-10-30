@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { LETTERS, compose, frameElements, textWidth } from '../scripts/lib/letters.ts';
+import { LETTERS, SIZES, compose, frameElements, textWidth } from '../scripts/lib/letters.ts';
 import { bboxAll, lintNodes, lintSvg, loadGlyphs, sourceSvg, toNodes } from '../scripts/lib/source.ts';
 import { normalizeCode } from '../scripts/runtime/resolve.ts';
 import { spacingProblems } from '../scripts/lib/spacing.ts';
@@ -14,11 +14,13 @@ test('every source glyph passes the grid and metadata rules', () => {
   assert.ok(glyphs.length >= 195);
 });
 
-test('every character takes the 6-unit cell and composes inside the grid', () => {
-  for (const [c, letter] of Object.entries(LETTERS)) {
-    assert.equal(letter.width, 6, `${c} is ${letter.width} wide`);
-    const { elements } = compose(c, 'none', 'fixed');
-    assert.deepEqual(lintNodes(toNodes(elements), c), [], `letter ${c}`);
+test('every character has both sizes, each in its own cell, inside the grid', () => {
+  assert.deepEqual(Object.keys(SIZES.framed.letters), Object.keys(LETTERS));
+  for (const c of Object.keys(LETTERS)) {
+    assert.equal(SIZES.text.letters[c]!.width, 8, `${c} text size`);
+    assert.equal(SIZES.framed.letters[c]!.width, 6, `${c} framed size`);
+    assert.deepEqual(lintNodes(toNodes(compose(c, 'none', 'fixed').elements), c), [], `text ${c}`);
+    assert.deepEqual(lintNodes(toNodes(compose(c, 'keycap', 'fixed').elements), c), [], `framed ${c}`);
   }
 });
 
@@ -28,7 +30,7 @@ test('text is always one line: composed letters share one cap line in both fits'
       if (!v || v.from === 'drawn') continue;
       const frameCount = frameElements(g.frame, v.width).length;
       const [, y0, , y1] = bboxAll(v.nodes.slice(frameCount));
-      assert.ok(y1 - y0 <= 10.01, `${g.id} ${v === g.fixed ? 'fixed' : 'hug'} spans ${y0}..${y1}`);
+      assert.ok(y1 - y0 <= (g.frame === 'none' ? 14.01 : 10.01), `${g.id} ${v === g.fixed ? 'fixed' : 'hug'} spans ${y0}..${y1}`);
     }
   }
 });
@@ -38,10 +40,10 @@ test('fixed is the 24px square; hug is 24 tall and only as wide as its content',
     if (g.fixed) assert.equal(g.fixed.width, 24, g.id);
     if (g.frame !== 'none') assert.ok(g.hug.width >= 24, `${g.id}: a framed hug is never narrower than the square`);
   }
-  assert.equal(glyph('locale-en').hug.width, 20, 'two characters: 16 units plus padding');
-  assert.equal(glyph('license-apache').hug.width, 70);
-  assert.equal(glyph('license-mit').hug.width, 30);
-  assert.equal(glyph('pos-x').hug.width, 10, 'unframed hug can be narrower than tall');
+  assert.equal(glyph('locale-en').hug.width, 24, 'a pair of text-size characters fills the square');
+  assert.equal(glyph('license-apache').hug.width, 84);
+  assert.equal(glyph('license-mit').hug.width, 36);
+  assert.equal(glyph('pos-x').hug.width, 12, 'unframed hug can be narrower than tall');
   assert.equal(glyph('key-shift').hug.width, 60);
   assert.equal(glyph('key-f1').hug.width, 30);
   assert.equal(glyph('key-k').hug.width, 24);
@@ -66,9 +68,10 @@ test('frames stretch when hugging', () => {
   assert.equal(compose('C', 'circle', 'hug').elements[0]!.tag, 'circle', 'a circle stays a circle while it fits');
   assert.match(compose('CC0', 'circle', 'hug').elements[0]!.attrs.d!, /^M12 2h\d+a10 10/, 'and becomes a pill when it does not');
   assert.equal(compose('E', 'bubble', 'hug').width, 24);
-  assert.equal(compose('EN', 'none', 'fixed').elements.map((e) => e.attrs.d).join(' '), 'M10 7h-6v10h6M4 12h5 M14 17v-10l6 10v-10', 'a pair spans x 4..20, y 7..17');
-  assert.equal(compose('ENGLISH', 'bubble', 'hug').width, textWidth('ENGLISH') + 12);
-  assert.equal(compose('BACKSPACE', 'keycap', 'hug').elements[0]!.attrs.width, String(textWidth('BACKSPACE') + 8));
+  assert.equal(compose('EN', 'none', 'fixed').elements.map((e) => e.attrs.d).join(' '), 'M10 5h-8v14h8M2 12h6.667 M14 19v-14l8 14v-14', 'a text-size pair spans x 2..22, y 5..19');
+  assert.equal(compose('K', 'keycap', 'fixed').elements[1]!.attrs.d, 'M9 7v10M15 7l-6 6M11 11l4 6', 'a key sets the framed size, y 7..17');
+  assert.equal(compose('ENGLISH', 'bubble', 'hug').width, textWidth('ENGLISH', 'framed') + 12);
+  assert.equal(compose('BACKSPACE', 'keycap', 'hug').elements[0]!.attrs.width, String(textWidth('BACKSPACE', 'framed') + 8));
   assert.throws(() => compose('APACHE2', 'none', 'fixed'), /fixed none glyph fits 20/);
   assert.throws(() => compose('ESC', 'keycap', 'fixed'), /fits 10/);
   assert.throws(() => textWidth('a'), /no letter "a"/);
