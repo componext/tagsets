@@ -25,9 +25,9 @@ test('the manifest lists every source glyph, and every file it names exists', ()
   }
   assert.deepEqual(manifest.tagsets.map((t) => t.id), tagsets.map((t) => t.id));
   const apache = manifest.glyphs.find((g) => g.id === 'license-apache')!;
-  assert.deepEqual([apache.fixed, apache.hug.shows, apache.hug.width], [null, 'APACHE2', 70]);
+  assert.deepEqual([apache.fixed, apache.hug.shows, apache.hug.width], [null, 'APACHE2', 84]);
   const noun = manifest.glyphs.find((g) => g.id === 'pos-noun')!;
-  assert.deepEqual([noun.fixed?.shows, noun.hug.shows, noun.hug.width], ['N', 'NOUN', 40]);
+  assert.deepEqual([noun.fixed?.shows, noun.hug.shows, noun.hug.width], ['N', 'NOUN', 48]);
 });
 
 test('sprites hold one symbol per glyph, with the right viewBox', () => {
@@ -102,8 +102,8 @@ test('toSvg draws the fit asked for, sized by height', () => {
   assert.equal(plain.match(/<path /g)?.length, 2);
 
   assert.match(toSvg(PosNoun), /width="24" height="24" viewBox="0 0 24 24"/);
-  assert.match(toSvg(PosNoun, { fit: 'hug', size: 48 }), /width="80" height="48" viewBox="0 0 40 24".*class="tagsets tagsets-pos-noun tagsets-hug"/);
-  assert.match(toSvg(LicenseLgpl), /width="40" height="24" viewBox="0 0 40 24"/, 'no fixed form: falls back to hug');
+  assert.match(toSvg(PosNoun, { fit: 'hug', size: 48 }), /width="96" height="48" viewBox="0 0 48 24".*class="tagsets tagsets-pos-noun tagsets-hug"/);
+  assert.match(toSvg(LicenseLgpl), /width="48" height="24" viewBox="0 0 48 24"/, 'no fixed form: falls back to hug');
   assert.match(toSvg(MathSum, { fit: 'hug', size: '1.5em' }), /width="1em" height="1.5em" viewBox="4 0 16 24"/);
 
   const custom = toSvg(LocaleEn, { size: 48, color: '#0a0', strokeWidth: 2, absoluteStrokeWidth: true, title: 'English <3', class: 'x', attrs: { 'data-k': 1 } });

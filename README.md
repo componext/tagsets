@@ -24,12 +24,12 @@ Every glyph is 24 tall and comes in up to two widths, named after Figma's auto-l
 
 | Glyph | Fixed | Hug |
 |---|---|---|
-| `LocaleEn` | `EN`, filling the square | `EN` cropped to its ink (20 wide) |
-| `PosNoun`, `PosPropn` | `N`, `NP` | `NOUN` (40), `PROPN` (50) |
+| `LocaleEn` | `EN`, filling the square | the same (24) |
+| `PosNoun`, `PosPropn` | `N`, `NP` | `NOUN` (48), `PROPN` (60) |
 | `KeyShift`, `KeyHome` | `⇧`, `↖` | `SHIFT` keycap (60), `HOME` keycap (50) |
 | `KeyK`, `LicenseCc` | same as hug | 24 |
 | `MathSum` | `∑` in the square | `∑` cropped to its ink (16) |
-| `LicenseMit`, `TechApi`, `LicenseApache`, `KeyF1` | none | `MIT` (30), `API` (30), `APACHE2` (70), `F1` keycap (30) |
+| `LicenseMit`, `TechApi`, `LicenseApache`, `KeyF1` | none | `MIT` (36), `API` (36), `APACHE2` (84), `F1` keycap (30) |
 
 61 glyphs are hug-only: the three-letter and longer license, tech and POS codes with no recognizable two-character short form, plus `Fn`, `F1`–`F12`, `PgUp` and `PgDn`. Nothing is ever set on two lines.
 
@@ -49,8 +49,8 @@ import { LicenseMit, PosNoun, KeyMeta, KeyK } from 'tagsets-react';
 import { TagGlyph } from 'tagsets-react/dynamic';
 
 <PosNoun size={20} title="Noun" />                       // N, 20×20
-<PosNoun size={20} fit="hug" />                          // NOUN, 33.3×20
-<LicenseMit />                                           // hug only: MIT, 30×24
+<PosNoun size={20} fit="hug" />                          // NOUN, 40×20
+<LicenseMit />                                           // hug only: MIT, 36×24
 <KeyMeta /><KeyK />                                      // ⌘ K
 <TagGlyph tagset="keys" code={event.code} fit="hug" />   // ShiftLeft → SHIFT keycap
 <TagGlyph tagset="licenses" code={pkg.license} fallback={pkg.license} />
@@ -87,7 +87,7 @@ Every component takes `size` (24, the height), `fit` (`fixed`), `color` (`curren
 1. **Name what stands in for text.** A glyph is `aria-hidden` unless it has a `title` or `aria-label`. A tag glyph usually *is* the content (a license column, a language switcher, a shortcut hint), so give it one unless a visible label sits next to it. `TagGlyph` and `replaceElements` title themselves with the glyph's label; pass `title=""` to opt out.
 2. **`size` is the height.** A fixed glyph is `size` square; a hug glyph is `size × width / 24` wide. Numbers and plain lengths (`"1.5em"`) scale; anything else (`var(--s)`) keeps the box square and the drawing shrinks to fit it. Hugging glyphs carry the class `tagsets-hug`.
 3. **Pick one fit per row.** Fixed glyphs line up in columns; hug glyphs read like words. A fixed row can still contain hug-only glyphs (most three-letter codes), which come out wider than the rest. Sprites follow the same rule: `sprite.svg` holds the fixed form (or hug where there is none), `sprite-hug.svg` the hug form, each with its own `viewBox`, so size `<use>` boxes from `manifest.json`.
-4. **12px is the floor.** Characters are 10 grid units tall with 4-unit counters: 2.7px of air at 16px, 2px at 12px. Below that, or with `strokeWidth` above 2.5, they close up. Keep `absoluteStrokeWidth` for sizes of 24px and up: below 24px it thickens the stroke in grid units (2px at 16px is 3 units) and closes the counters.
+4. **12px is the floor.** Freestanding characters are 14 grid units tall with 6-unit counters (4px of air at 16px); characters in a key are 10 tall with 4-unit counters (2.7px at 16px, 2px at 12px). Below that, or with `strokeWidth` above 2.5, they close up. Keep `absoluteStrokeWidth` for sizes of 24px and up: below 24px it thickens the stroke in grid units (2px at 16px is 3 units) and closes the counters.
 5. **Tiles inline, statics anywhere.** SVG files and sprites work in `<img>`, CSS and `<use>`. Tile ids are suffixed with the glyph id, so any number can be inlined on one page. Tiles are square, so round the corners in CSS (16px at 72px). A hug-only glyph's tile shrinks it to fit.
 6. **Codes resolve, they are not validated.** `getGlyph('licenses', 'GPL-2.0-only')` returns the GPL family glyph; versions share it (so `Apache-1.1` shows `APACHE2`). Keys follow macOS: `Meta` is `⌘`/`CMD`, `Alt` is `⌥`/`ALT`. A code nobody claims returns `undefined` (React: `fallback`, Vue: `#fallback` slot, vanilla: the placeholder stays).
 7. **The dynamic entry imports everything.** `tagsets-react/dynamic` and `tagsets-vue/dynamic` bundle all 195 glyphs (about 130KB unminified, 12KB gzipped). Import named glyphs from the package root when the codes are known at build time.
@@ -95,7 +95,12 @@ Every component takes `size` (24, the height), `fit` (`fixed`), `color` (`curren
 
 ## How glyphs are made
 
-Most tags are codes, so most glyphs are text, set in a monoline **stroke alphabet** (`scripts/lib/letters.ts`): capitals, digits and arrows after Nunito's rounded geometric capitals, drawn as single 2px strokes and stretched to one size. Every character takes the same 6×10 cell (8×12 in ink) with oval bowls, and characters sit 4 apart, leaving 2px of air between strokes. A pair fills the square edge to edge (ink from 3 to 21), and stems and bars land on whole pixels, so they stay crisp at 1×.
+Most tags are codes, so most glyphs are text, set in a monoline **stroke alphabet** (`scripts/lib/letters.ts`): capitals, digits and arrows after Nunito's rounded geometric capitals, drawn as single 2px strokes with oval bowls. The alphabet is monospaced, characters sit 4 apart (2px of air between strokes), and it comes in two optical sizes:
+
+- **Text**, for freestanding glyphs: an 8×14 cell (16 tall in ink). A pair fills the square edge to edge and sits at the visual size of a Lucide pictogram beside it.
+- **Framed**, inside a key or a circle: a 6×10 cell, the most a frame's 2px of padding leaves room for.
+
+In both, stems and bars land on whole pixels, so they stay crisp at 1×.
 
 A glyph's `.json` holds its codes and, for text, `"text"` and an optional `"short"`. The build composes both fits from them; nothing generated is written back to the source. A drawn `<name>.svg` beside the JSON is the fixed form; with no `text` it is the hug form too.
 
@@ -103,12 +108,12 @@ Text sits in a **frame**, set per tagset or per glyph:
 
 | Frame | Fixed holds | Hug | Used for |
 |---|---|---|---|
-| `none` | two characters | text + 2 each side | locales, licenses, POS, tech, math |
-| `circle` | one character | becomes a pill | `©`, CC0 |
-| `keycap` | one character | square widens | keys (Lucide `square`) |
-| `bubble` | one character | body widens, tail stays | no tagset by default (Lucide `message-square`) |
+| `none` | two text-size characters | text + 2 each side | locales, licenses, POS, tech, math |
+| `circle` | one framed-size character | becomes a pill | `©`, CC0 |
+| `keycap` | one framed-size character | square widens | keys (Lucide `square`) |
+| `bubble` | one framed-size character | body widens, tail stays | no tagset by default (Lucide `message-square`) |
 
-The square is small: two 6-unit characters and their 4-unit gap fill its 20-unit live area, and a frame leaves room for one.
+The square is small: two 8-unit text characters and their 4-unit gap fill its 20-unit live area, and a frame leaves room for one 6-unit framed character.
 
 Keys sit in Lucide's `square` (18px, 2px corners); language codes and other tags stand free. Two spacing rules hold everywhere, and the build checks them on every variant (`scripts/lib/spacing.ts`): separate strokes either join or keep at least 1px of air between them, and anything inside a frame keeps at least 2px of air from it (a slash may cross it). A character in a key has exactly 2px above and below. Three-letter codes need a recognizable two-character short form (`NP`, `CC`) or a symbol, or stay hug-only.
 

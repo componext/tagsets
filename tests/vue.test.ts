@@ -16,8 +16,8 @@ test('a glyph renders with Lucide defaults and is decorative without a title', a
 
 test('fit picks the square or the hugging width; size is the height', async () => {
   assert.match(await render(() => h(PosNoun)), /width="24" height="24" viewBox="0 0 24 24"/);
-  assert.match(await render(() => h(PosNoun, { fit: 'hug', size: 12 })), /width="20" height="12" viewBox="0 0 40 24".*tagsets-hug/);
-  assert.match(await render(() => h(LicenseLgpl)), /width="40" height="24"/, 'no fixed form: falls back to hug');
+  assert.match(await render(() => h(PosNoun, { fit: 'hug', size: 12 })), /width="24" height="12" viewBox="0 0 48 24".*tagsets-hug/);
+  assert.match(await render(() => h(LicenseLgpl)), /width="48" height="24"/, 'no fixed form: falls back to hug');
   assert.equal(LicenseMit.fixed, null);
   assert.match(await render(() => h(MathTimes, { fit: 'hug' })), /width="14" height="24" viewBox="5 0 14 24"/);
 });
